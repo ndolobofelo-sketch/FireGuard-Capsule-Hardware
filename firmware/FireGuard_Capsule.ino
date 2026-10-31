@@ -1,3 +1,4 @@
+
 #include <WiFi.h>
 #include <WebServer.h>
 #include <TinyGPSPlus.h>
@@ -127,14 +128,14 @@ const int MQ7_THRESHOLD = 1800;
 const float HIGH_TEMPERATURE = 35.0;
 const float LOW_HUMIDITY = 30.0;
 
-// Flame sensor output logic
+// Confirm the flame sensor's output logic for your module.
 const bool FLAME_ACTIVE_HIGH = true;
 
-// Pump driver or relay logic
+// Verify these levels against your pump driver or relay.
 const int PUMP_ON_LEVEL = HIGH;
 const int PUMP_OFF_LEVEL = LOW;
 
-// RGB LED configuration
+// false is normally used for common-cathode RGB LEDs.
 const bool RGB_COMMON_ANODE = false;
 
 // ================ SERVO SETTINGS ================
@@ -225,6 +226,7 @@ void setPump(bool turnOn) {
 
   pumpIsOn = requestedState;
 }
+
 // ================ GPS ================
 String gpsText() {
   if (!gpsFix) {
@@ -435,6 +437,7 @@ String jsonEscape(const String& input) {
 
   return out;
 }
+
 // ================ ONLINE TELEMETRY ================
 void uploadTelemetry() {
   if (WiFi.status() != WL_CONNECTED) {
@@ -572,6 +575,7 @@ void updateServo() {
 
   servoMotor.write(servoAngle);
 }
+
 // ================ LOCAL DASHBOARD ================
 void handleRoot() {
   String html = R"HTML(
@@ -767,6 +771,7 @@ void maintainWiFi() {
   WiFi.disconnect();
   WiFi.begin(wifiSSID.c_str(), wifiPassword.c_str());
 }
+
 // ================ SETUP ================
 
 void setup() {
