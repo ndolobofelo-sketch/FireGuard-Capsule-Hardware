@@ -1,4 +1,4 @@
-# FireGuard Capsule Hardware
+ # FireGuard Capsule Hardware
 
 **An ESP32-Based Wildfire Detection, Monitoring and Water-Suppression System**
 
