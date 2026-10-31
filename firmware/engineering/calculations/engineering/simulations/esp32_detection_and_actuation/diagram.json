@@ -1,0 +1,167 @@
+
+{
+  "version": 1,
+  "author": "FireGuard Capsule Engineering Team",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -150,
+      "left": 300,
+      "attrs": {
+        "temperature": "25",
+        "humidity": "50"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "flameBtn",
+      "top": 160,
+      "left": 300,
+      "attrs": {
+        "color": "red",
+        "label": "FLAME EVENT"
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "mq2Pot",
+      "top": -130,
+      "left": 480,
+      "attrs": {
+        "value": "0"
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "mq7Pot",
+      "top": 20,
+      "left": 480,
+      "attrs": {
+        "value": "0"
+      }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servo1",
+      "top": 300,
+      "left": 450,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer1",
+      "top": 330,
+      "left": 180,
+      "attrs": {
+        "volume": "0.2"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "greenLed",
+      "top": 430,
+      "left": 100,
+      "attrs": {
+        "color": "green"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "greenRes",
+      "top": 470,
+      "left": 100,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "redLed",
+      "top": 430,
+      "left": 220,
+      "attrs": {
+        "color": "red"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "redRes",
+      "top": 470,
+      "left": 220,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "pumpLed",
+      "top": 430,
+      "left": 340,
+      "attrs": {
+        "color": "blue"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "pumpRes",
+      "top": 470,
+      "left": 340,
+      "attrs": {
+        "value": "220"
+      }
+    }
+  ],
+  "connections": [
+    ["esp:TX", "$serialMonitor:RX", "", []],
+    ["esp:RX", "$serialMonitor:TX", "", []],
+
+    ["dht1:VCC", "esp:3V3", "red", []],
+    ["dht1:GND", "esp:GND.1", "black", []],
+    ["dht1:SDA", "esp:D19", "green", []],
+
+    ["flameBtn:1.l", "esp:D18", "orange", []],
+    ["flameBtn:2.r", "esp:GND.1", "black", []],
+
+    ["mq2Pot:VCC", "esp:3V3", "red", []],
+    ["mq2Pot:GND", "esp:GND.1", "black", []],
+    ["mq2Pot:SIG", "esp:D34", "blue", []],
+
+    ["mq7Pot:VCC", "esp:3V3", "red", []],
+    ["mq7Pot:GND", "esp:GND.1", "black", []],
+    ["mq7Pot:SIG", "esp:D35", "blue", []],
+
+    ["servo1:PWM", "esp:D13", "orange", []],
+    ["servo1:V+", "esp:VIN", "red", []],
+    ["servo1:GND", "esp:GND.2", "black", []],
+
+    ["buzzer1:1", "esp:GND.2", "black", []],
+    ["buzzer1:2", "esp:D22", "purple", []],
+
+    ["esp:D25", "greenRes:1", "green", []],
+    ["greenRes:2", "greenLed:A", "green", []],
+    ["greenLed:C", "esp:GND.1", "black", []],
+
+    ["esp:D26", "redRes:1", "red", []],
+    ["redRes:2", "redLed:A", "red", []],
+    ["redLed:C", "esp:GND.1", "black", []],
+
+    ["esp:D27", "pumpRes:1", "blue", []],
+    ["pumpRes:2", "pumpLed:A", "blue", []],
+    ["pumpLed:C", "esp:GND.2", "black", []]
+  ],
+  "serialMonitor": {
+    "display": "auto",
+    "newline": "lf",
+    "convertEol": false
+  },
+  "dependencies": {}
+}
